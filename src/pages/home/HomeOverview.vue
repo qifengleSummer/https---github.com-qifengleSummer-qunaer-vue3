@@ -5,11 +5,14 @@ import SelfTabbar from '@/components/tabbar/SelfTabbar.vue'
 
 
 <template>
-  <div>
+  <div class="home_overview">
     <RouterView />
     <self-tabbar />
   </div>
 </template>
     
 <style scoped>
+.home_overview {
+  background: #f3f4f8;
+}
 </style>

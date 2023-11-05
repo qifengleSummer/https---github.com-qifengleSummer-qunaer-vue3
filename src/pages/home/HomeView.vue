@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Search, Icon, Swipe, SwipeItem } from 'vant'
+import SelfSwipe from '@/components/selfSwipe/SelfSwipe.vue'
+import SelfSwipeItem from '@/components/selfSwipe/SelfSwipeItem.vue'
 
 const swiperList = ref([
   'https://ts1.cn.mm.bing.net/th/id/R-C.9e45a633e95179a37c907fa2797999ad?rik=aMuPS4TunAh5ZA&riu=http%3a%2f%2fwww.quazero.com%2fuploads%2fallimg%2f140303%2f1-140303214Q2.jpg&ehk=P%2firfYpARc1fHht%2bWpapYR4W15p6SLABE8CBexoeon4%3d&risl=&pid=ImgRaw&r=0',
@@ -127,34 +129,60 @@ function onSearch(params) {
         <div class="q_plus">PLUS权益</div>
       </div>
     </div>
-    <div class="touch_header">
-      <div class="touch_header_content">
-        <RouterLink
-          v-for="(item, index) in touchHeaderList"
-          :key="index"
-          to="/order"
-          :class="[
-            `touch_header_item`,
-            `${index % 4 === 0 ? 'touch_header_1' : 'touch_header_right'}`,
-            `${item.bgColor}`,
-            `${item.tag ? 'tr_radius' : ''}`
-          ]"
-        >
-          <i v-if="item.tag" class="touch_header_tag">{{ item.tag }}</i>
-          <div class="item_container">
-            <p class="touch_header_1_title">{{ item.name }}</p>
-            <p class="touch_header_1_text">{{ item.text }}</p>
+    <div class="touch_header_container">
+      <self-swipe>
+        <self-swipe-item>
+          <div class="touch_header">
+            <RouterLink
+              v-for="(item, index) in touchHeaderList"
+              :key="index"
+              to="/order"
+              :class="[
+                `touch_header_item`,
+                `${index % 4 === 0 ? 'touch_header_1' : 'touch_header_right'}`,
+                `${item.bgColor}`,
+                `${item.tag ? 'tr_radius' : ''}`
+              ]"
+            >
+              <i v-if="item.tag" class="touch_header_tag">{{ item.tag }}</i>
+              <div class="item_container">
+                <p class="touch_header_1_title">{{ item.name }}</p>
+                <p class="touch_header_1_text">{{ item.text }}</p>
+              </div>
+            </RouterLink>
           </div>
-        </RouterLink>
-      </div>
+        </self-swipe-item>
+        <self-swipe-item>
+          <div class="touch_header">
+            <RouterLink
+              v-for="(item, index) in touchHeaderList"
+              :key="index"
+              to="/order"
+              :class="[
+                `touch_header_item`,
+                `${index % 4 === 0 ? 'touch_header_1' : 'touch_header_right'}`,
+                `${item.bgColor}`,
+                `${item.tag ? 'tr_radius' : ''}`
+              ]"
+            >
+              <i v-if="item.tag" class="touch_header_tag">{{ item.tag }}</i>
+              <div class="item_container">
+                <p class="touch_header_1_title">{{ item.name }}</p>
+                <p class="touch_header_1_text">{{ item.text }}</p>
+              </div>
+            </RouterLink>
+          </div>
+        </self-swipe-item>
+      </self-swipe>
     </div>
+    <br />
   </div>
 </template>
     
 <style scoped lang="less">
 .homeview {
   .swipe-container {
-    height: 6rem;
+    height: 8.6rem;
     width: 100%;
     .swipe-img {
       width: 100%;
@@ -182,22 +210,20 @@ function onSearch(params) {
       }
     }
   }
-  .touch_header {
-    padding: 8px;
+
+  .touch_header_container {
+    position: relative;
+    z-index: 99;
+    padding: 10px;
     border-radius: 12px;
     margin: -9px 0 10px 0;
-    z-index: 99;
-    position: relative;
     background: #fff;
-    .touch_header_content {
-      // border-top-left-radius: 16px;
-      // border-bottom-left-radius: 16px;
-      // overflow: hidden;
+    .touch_header {
       .tr_radius {
         border-top-right-radius: 16px;
       }
       .touch_header_item {
-        height: 3rem;
+        height: 4rem;
         vertical-align: bottom;
         margin: 0.1%;
         position: relative;

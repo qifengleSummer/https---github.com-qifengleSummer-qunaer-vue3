@@ -2,7 +2,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { Tabbar, TabbarItem } from 'vant'
-import router from '../../router'
+import router from '@/router'
 
 const active = ref(0)
 watch(active, (newValue) => {
