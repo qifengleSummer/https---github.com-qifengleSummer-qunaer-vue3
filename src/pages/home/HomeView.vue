@@ -167,6 +167,8 @@ function onSearch(params) {
             >
               <i v-if="item.tag" class="touch_header_tag">{{ item.tag }}</i>
               <div class="item_container">
+                <br />
+                <br />
                 <p class="touch_header_1_title">{{ item.name }}</p>
                 <p class="touch_header_1_text">{{ item.text }}</p>
               </div>
@@ -213,7 +215,6 @@ function onSearch(params) {
 
   .touch_header_container {
     position: relative;
-    z-index: 99;
     padding: 10px;
     border-radius: 12px;
     margin: -9px 0 10px 0;
@@ -223,7 +224,7 @@ function onSearch(params) {
         border-top-right-radius: 16px;
       }
       .touch_header_item {
-        height: 4rem;
+        padding: 1rem 0;
         vertical-align: bottom;
         margin: 0.1%;
         position: relative;
