@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Search, Icon, Swipe, SwipeItem } from 'vant'
 import SelfSwipe from '@/components/selfSwipe/SelfSwipe.vue'
@@ -13,7 +13,7 @@ const swiperList = ref([
 ])
 const searchVal = ref('')
 
-const touchHeaderList = ref([
+const touchHeaderList = reactive([
   {
     name: '酒店',
     icon: '',
@@ -100,6 +100,209 @@ const touchHeaderList = ref([
   }
 ])
 
+const anotherHeaderList = reactive([
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '旅行攻略'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '本地游'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '邮轮'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '一日游'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '跟团游'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '自由行'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '家庭游'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '定制游'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '私家团'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '出境游'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '旅游团购'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '团建'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '主题游'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '当地向导'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '签证'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '酒店套餐'
+  },
+  {
+    icon: 'coupon',
+    color: '#38dbbc',
+    name: '消费券'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '接送机'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '接送火车'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '旅游包车'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '按天包车'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '打车'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '国内租车'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '境外租车'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '包车游'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '低价机票'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '预售机票'
+  },
+  {
+    icon: 'coupon',
+    color: '#459cf9',
+    name: '团体机票'
+  },
+  {
+    icon: 'coupon',
+    color: '#ffc468',
+    name: '拿去花'
+  },
+  {
+    icon: 'coupon',
+    color: '#ffc468',
+    name: '借现金'
+  },
+  {
+    icon: 'coupon',
+    color: '#ffc468',
+    name: '借钱优选'
+  },
+  {
+    icon: 'coupon',
+    color: '#ffc468',
+    name: '分期商城'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '航司会员'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '每日签到'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '积分兑换'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '旅行商城'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '会员中心'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '学生专区'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '兑换会员'
+  },
+  {
+    icon: 'coupon',
+    color: '#ff7a8b',
+    name: '商务合作'
+  }
+])
+
 function onSearch(params) {
   console.log(params)
 }
@@ -130,7 +333,7 @@ function onSearch(params) {
       </div>
     </div>
     <div class="touch_header_container">
-      <self-swipe>
+      <self-swipe class="self_swipe_style">
         <self-swipe-item>
           <div class="touch_header">
             <RouterLink
@@ -153,25 +356,16 @@ function onSearch(params) {
           </div>
         </self-swipe-item>
         <self-swipe-item>
-          <div class="touch_header">
+          <div class="touch_header_another">
             <RouterLink
-              v-for="(item, index) in touchHeaderList"
-              :key="index"
+              class="touch_header_another_item"
               to="/order"
-              :class="[
-                `touch_header_item`,
-                `${index % 4 === 0 ? 'touch_header_1' : 'touch_header_right'}`,
-                `${item.bgColor}`,
-                `${item.tag ? 'tr_radius' : ''}`
-              ]"
+              v-for="(item, index) in anotherHeaderList"
+              :key="index"
             >
-              <i v-if="item.tag" class="touch_header_tag">{{ item.tag }}</i>
-              <div class="item_container">
-                <br />
-                <br />
-                <p class="touch_header_1_title">{{ item.name }}</p>
-                <p class="touch_header_1_text">{{ item.text }}</p>
-              </div>
+              <Icon :name="item.icon" size="1.8em" :color="item.color" />
+              <br />
+              {{ item.name }}
             </RouterLink>
           </div>
         </self-swipe-item>
@@ -184,7 +378,7 @@ function onSearch(params) {
 <style scoped lang="less">
 .homeview {
   .swipe-container {
-    height: 8.6rem;
+    height: 8rem;
     width: 100%;
     .swipe-img {
       width: 100%;
@@ -219,6 +413,16 @@ function onSearch(params) {
     border-radius: 12px;
     margin: -9px 0 10px 0;
     background: #fff;
+    .self_swipe_style {
+      position: relative;
+      :deep(.menu_swipe_indicator_container_self) {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2rem;
+        z-index: 1;
+      }
+    }
     .touch_header {
       .tr_radius {
         border-top-right-radius: 16px;
@@ -307,6 +511,16 @@ function onSearch(params) {
       .touch_header_right {
         display: inline-block;
         width: 24%;
+      }
+    }
+    .touch_header_another {
+      color: #333333;
+      .touch_header_another_item {
+        display: inline-block;
+        text-align: center;
+        width: 25%;
+        padding: 0.3rem 0;
+        font-size: 0.8rem;
       }
     }
   }
